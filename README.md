@@ -7,9 +7,9 @@ Command line utility that determines if line 3 of stdin can be derived from line
 For the below input:
 
 ```
-0 1 2 3
-4 5 6 7
-0 4 1 2 5 3 6 7
+OBFUSCATION
+eschew
+OBesFUScCheATIwON
 ```
 
 The expected output is `True`.
@@ -17,9 +17,9 @@ The expected output is `True`.
 For the below input:
 
 ```
-l l l l
-r r r
-l l l r r r r
+OBFUSCATION
+eschew
+OBesFSUcCheATIwON
 ```
 
 The expected output is `False`.
