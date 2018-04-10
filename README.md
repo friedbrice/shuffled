@@ -24,6 +24,8 @@ l l l r r r r
 
 The expected output is `False`.
 
+See _test-cases.txt_ for further examples.
+
 ## Setup
 
 You'll need `make`, `ghc`, and (optionally) `python3` and `numpy` installed.
