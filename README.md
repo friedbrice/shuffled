@@ -2,6 +2,28 @@
 
 Command line utility that determines if line 3 of stdin can be derived from lines 1 and 2 by shuffling once.
 
+## Example
+
+For the below input:
+
+```
+0 1 2 3
+4 5 6 7
+0 4 1 2 5 3 6 7
+```
+
+The expected output is `True`.
+
+For the below input:
+
+```
+l l l l
+r r r
+l l l r r r r
+```
+
+The expected output is `False`.
+
 ## Setup
 
 You'll need `make`, `ghc`, and (optionally) `python3` and `numpy` installed.
