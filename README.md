@@ -24,18 +24,18 @@ OBesFSUcCheATIwON
 
 The expected output is `False`.
 
-See _test-cases.txt_ for further examples.
+See _test-cases.txt_ and _sample-input/_ for further examples.
 
 ## Setup
 
 You'll need `make`, `ghc`, and (optionally) `python3` and `numpy` installed.
 
-Use `make compile` to compile a native binary.
+Use `make compile` to compile a native binary with optimizations.
 
-Use `make test` to run unit tests.
+Use `make test` to run unit tests in interpreted mode (slow).
 
-Use `make run` to exercise the compiled native binary.
+Use `make run` to exercise the native binary against the sample input.
 
 ## Considerations
 
-The present implementation does not complete the final unit test in a reasonable amount of time.
+The present implementation does not complete the final test case in a reasonable amount of time.

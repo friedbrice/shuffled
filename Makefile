@@ -21,8 +21,9 @@ test: Shuffled.hs ShuffledTest.hs test-cases.txt
 .PHONY: run
 run: Shuffled.hs ShuffledApp.hs bin/shuffled
 	find sample-input/ -type f \
+	| sort \
 	| xargs -L 1 \
-	| while read file; do bin/shuffled < $$file; done
+	| while read file; do echo; echo $$file; time bin/shuffled < $$file; done
 
 .PHONY: install
 install: clean compile test run
