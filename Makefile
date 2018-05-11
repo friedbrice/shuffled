@@ -23,6 +23,6 @@ run: Shuffled.hs ShuffledApp.hs bin/shuffled
 	find sample-input/ -type f \
 	| sort \
 	| xargs -L 1 \
-	| while read file; do echo; echo $$file; time bin/shuffled < $$file; done
+	| while read file; do echo; echo $$file; time -p bin/shuffled < $$file; done
 
 bin/shuffled: Shuffled.hs ShuffledApp.hs compile
