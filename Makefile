@@ -25,13 +25,4 @@ run: Shuffled.hs ShuffledApp.hs bin/shuffled
 	| xargs -L 1 \
 	| while read file; do echo; echo $$file; time bin/shuffled < $$file; done
 
-.PHONY: install
-install: clean compile test run
-	mkdir -p ${HOME}/bin
-	cp bin/shuffled ${HOME}/bin
-
-.PHONY: uninstall
-uninstall:
-	if [ -f ${HOME}/bin/shuffled ]; then rm ${HOME}/bin/shuffled; fi
-
 bin/shuffled: Shuffled.hs ShuffledApp.hs compile

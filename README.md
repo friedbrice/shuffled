@@ -28,7 +28,7 @@ See _test-cases.txt_ and _sample-input/_ for further examples.
 
 ## Setup
 
-You'll need `make`, `ghc`, and (optionally) `python3` and `numpy` installed.
+You'll need `make`, `haskell-platform`, and (optionally) `python3` installed.
 
 Use `make compile` to compile a native binary with optimizations.
 
