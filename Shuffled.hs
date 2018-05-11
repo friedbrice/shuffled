@@ -23,8 +23,7 @@ isShuffledDynamic :: Eq a => ([a],[a]) -> [a] -> Bool
 isShuffledDynamic (left,right) combined =
   if length left + length right /= length combined then False else
   or (go (left,right,combined)) where
-    go (l:ls,r:rs,c:cs) | l == c && r == c =
-      go' ! (ls,r:rs,cs) ++ go' ! (l:ls,rs,cs)
+    go (l:ls,r:rs,c:cs) | l == c && r == c = go' ! (ls,r:rs,cs) ++ go' ! (l:ls,rs,cs)
     go (l:ls,  rs,c:cs) | l == c           = go' ! (ls,rs,cs)
     go (  ls,r:rs,c:cs) | r == c           = go' ! (ls,rs,cs)
     go (  [],  [],  [])                    = [True]
