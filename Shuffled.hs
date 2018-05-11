@@ -10,31 +10,28 @@ isShuffledConcurrent (left,right) combined =
     naive = return (isShuffledNaive (left,right) combined)
     dynamic = return (isShuffledDynamic (left,right) combined)
 
+go :: (([a],[a],[a]) -> [Bool]) -> ([a],[a],[a]) -> [Bool]
+go f (l:ls,r:rs,c:cs) | l == c && r == c = f (ls,r:rs,cs) ++ f (l:ls,rs,cs)
+go f (l:ls,  rs,c:cs) | l == c           = f (ls,rs,cs)
+go f (  ls,r:rs,c:cs) |           r == c = f (ls,rs,cs)
+go _ (  [],  [],  [])                    = [True]
+go _                _                    = [False]
+
 isShuffledNaive :: Eq a => ([a],[a]) -> [a] -> Bool
-isShuffledNaive (left,right) combined =
-  or (go (left,right,combined)) where
-    go (l:ls,r:rs,c:cs) | l == c && r == c = go (ls,r:rs,cs) ++ go (l:ls,rs,cs)
-    go (l:ls,  rs,c:cs) | l == c           = go (ls,rs,cs)
-    go (  ls,r:rs,c:cs) |           r == c = go (ls,rs,cs)
-    go (  [],  [],  [])                    = [True]
-    go                _                    = [False]
+isShuffledNaive (left,right) combined = or (go (fix go) (left,right,combined))
 
 isShuffledDynamic :: Eq a => ([a],[a]) -> [a] -> Bool
 isShuffledDynamic (left,right) combined =
   if length left + length right /= length combined then False else
-  or (go (left,right,combined)) where
-    go (l:ls,r:rs,c:cs) | l == c && r == c = go' ! (ls,r:rs,cs) ++ go' ! (l:ls,rs,cs)
-    go (l:ls,  rs,c:cs) | l == c           = go' ! (ls,rs,cs)
-    go (  ls,r:rs,c:cs) | r == c           = go' ! (ls,rs,cs)
-    go (  [],  [],  [])                    = [True]
-    go                _                    = [False]
+  or (go (go' !) (left,right,combined)) where
+    go' :: [(a,[Bool])]
     go' = [(x,go x) | x <- subproblems]
+    subproblems :: [([a],[a],[a])]
     subproblems = do
       ls <- tails left
       rs <- tails right
       cs <- tails combined
       guard (length ls + length rs == length cs)
       return (ls,rs,cs)
-    xys ! x = case find (\(x',_) -> x' == x) xys of
-      Just (_,y) -> y
-      _ -> error "lookup failed"
+    (!) :: [(a,[Bool])] -> a -> [Bool]
+    xys ! x = case find (\(x',_) -> x' == x) xys of Just (_,y) -> y
