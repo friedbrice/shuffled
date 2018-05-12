@@ -32,10 +32,6 @@ You'll need `make`, `haskell-platform`, and (optionally) `python3` installed.
 
 Use `make compile` to compile a native binary with optimizations.
 
-Use `make test` to run unit tests in interpreted mode (slow).
+Use `make test` to run unit tests in interpreted mode (without optimizations).
 
 Use `make run` to exercise the native binary against the sample input.
-
-## Considerations
-
-The present implementation does not complete the final test case in a reasonable amount of time.
