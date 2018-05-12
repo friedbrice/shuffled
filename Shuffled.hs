@@ -1,10 +1,8 @@
 module Shuffled (isShuffled) where
 
 import Control.Concurrent.Async (race)
-import Control.Monad (guard)
 import Data.Function (fix)
-import Data.Array (Array, (!), listArray)
-import Debug.Trace (trace)
+import Data.Array ((!), listArray)
 
 isShuffled (x,y) w = fmap (either id id) (race dynamic naive) where
     dynamic = return (isShuffledDynamic x y w)
