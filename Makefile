@@ -12,6 +12,7 @@ compile: Shuffled.hs ShuffledApp.hs
 	mkdir -p bin
 	ghc -outputdir lib -o bin/shuffled \
 	    -O2 -funfolding-use-threshold=16 -optc-O3 \
+		-threaded -with-rtsopts=-N4 \
 	    ShuffledApp.hs
 
 .PHONY: test

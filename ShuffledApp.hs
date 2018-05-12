@@ -1,8 +1,8 @@
-import Shuffled (isShuffledConcurrent)
+import Shuffled (isShuffled)
 
 main :: IO ()
 main = do
-  input <- getContents
-  let l:r:c:_ = fmap words (lines input)
-  shuffled <- isShuffledConcurrent (l,r) c
-  print shuffled
+    input <- getContents
+    let x:y:w:_ = fmap words (lines input)
+    shuffled <- isShuffled (x,y) w
+    print shuffled
